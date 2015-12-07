@@ -8,7 +8,6 @@ before_action :set_todo_item, except: [:create]
   end
 
   def destroy
-    @todo_item = set_todo_item
     if @todo_item.destroy
       flash[:success] = "Todo list item was deteted."
     else
