@@ -28,7 +28,7 @@ class TodoListsController < ApplicationController
 
     respond_to do |format|
       if @todo_list.save
-        format.html { redirect_to @todo_list, notice: 'Todo list was successfully created.' }
+        format.html { redirect_to @todo_list, notice: "Successfully created" }
         format.json { render :show, status: :created, location: @todo_list }
       else
         format.html { render :new }
@@ -37,8 +37,6 @@ class TodoListsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /todo_lists/1
-  # PATCH/PUT /todo_lists/1.json
   def update
     respond_to do |format|
       if @todo_list.update(todo_list_params)
@@ -51,23 +49,22 @@ class TodoListsController < ApplicationController
     end
   end
 
-  # DELETE /todo_lists/1
-  # DELETE /todo_lists/1.json
   def destroy
+#    @todo_list.todo_items.each do |i|
+#     i.destroy
+#   end
     @todo_list.destroy
       respond_to do |format|
-      format.html { redirect_to @todo_list, notice: 'Todo list was successfully destroyed.' }
+      format.html { redirect_to root_url, notice: 'Todo List was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_todo_list
       @todo_list = TodoList.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def todo_list_params
       params.require(:todo_list).permit(:title, :description)
     end
